@@ -30,6 +30,9 @@ public class TinderAiBackendApplication implements CommandLineRunner {
 	}
 
 	public void run(String... args){
+		conversationRepository.deleteAll();
+		profileRepository.deleteAll();
+
 		System.out.println("My app is running vishali");
 		Profile profile = new Profile(
 				"1",
@@ -42,7 +45,19 @@ public class TinderAiBackendApplication implements CommandLineRunner {
 				"foo.jpg",
 				"INTP"
 		);
+		Profile profile2 = new Profile(
+				"2",
+				"abc",
+				"qwe",
+				27,
+				"Indian",
+				Gender.FEMALE,
+				"Software Developer",
+				"foo.jpg",
+				"INTP"
+		);
 		profileRepository.save(profile);
+		profileRepository.save(profile2);
 		profileRepository.findAll().forEach(System.out::println);
 
 		Conversation conversation = new Conversation("101",profile.id(),
